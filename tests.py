@@ -8,7 +8,7 @@ except Exception as e:
 	print("Error while importing modules: {}".format(traceback.print_exc(e)))
 
 
-class getrefTests(unittest.TestCase):
+class GetRefTests(unittest.TestCase):
 	# test for homepage response
 	def test_homepage(self):
 		tester = app.test_client(self)
