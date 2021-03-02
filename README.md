@@ -16,3 +16,29 @@ The client is written using python3.8. It will work best with python3.8 or highe
 ```bash
 $ cd <cloned project directory>
 ```
+#### Create virtual environment using python3
+```bash
+$ python3 -m venv env
+```
+#### Activate virtual environment
+```bash
+$ source env/bin/activate
+```
+#### Install project dependencies
+```bash
+$ cat requirements.txt | xargs -n 1 pip install
+```
+## To run the client locally
+```bash
+$ python main.py
+```
+To test go to url http://localhost:5000/. You should see a HTML page with some information.
+For instructions on how to use the client go to http://localhost:5000/api/
+
+## Running tests
+To run tests use following command:
+```bash
+$ python -m unittest tests.GetRefTests
+```
+
+
