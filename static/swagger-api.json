@@ -1,0 +1,103 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ref-seek API",
+    "description": "API to get Reference Sequences using MD5 checksum id"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "ref-seek Reference retrieval API.",
+      "description": "Retrieve CRAM Reference Sequences API."
+    }
+  ],
+  "host":"localhost:5000",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/get_ref/{md5_checksum_id}": {
+      "get": {
+        "tags": [
+          "ref-seek Reference retrieval API."
+        ],
+        "summary": "Retrieve a sequence given a MD5 checksum.",
+        "operationId": "sequence",
+        "parameters": [
+          {
+            "name": "md5_checksum_id",
+            "in": "path",
+            "description": "Sequence MD5 checksum ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "3050107579885e1608e6fe50fae3f8d0"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of sequence."
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "404": {
+            "description": "Unknown sequence MD5 checksum."
+          },
+          "500": {
+            "description": "Server side error."
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "3050107579885e1608e6fe50fae3f8d0"
+            },
+            "md5": {
+              "type": "string",
+              "example": "3050107579885e1608e6fe50fae3f8d0"
+            },
+            "trunc512": {
+              "type": "string",
+              "example": "null"
+            },
+            "length": {
+              "type": "integer",
+              "format": "int64",
+              "example": 7156
+            },
+            "aliases": {
+              "type": "array"
+            }
+          }
+        },
+        "MetadataResponse": {
+          "type": "object",
+          "properties": {
+            "metadata": {
+              "$ref": "#/components/schemas/metadata"
+            }
+          }
+        },
+        "securitySchemes": {
+          "basicScheme": {
+            "type": "http",
+            "scheme": "basic"
+          }
+        }
+      }
+    }
+  }
+}
